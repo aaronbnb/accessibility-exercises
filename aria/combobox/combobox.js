@@ -77,13 +77,13 @@
             case VK_DOWN:
                 if (!this.listbox.hidden) {
                     this.listbox.nextActiveListItem();
-                    this.setActiveDescendant(this.listbox.activeItem);
+                    // this.setActiveDescendant(this.listbox.activeItem);
                 }
                 break;
             case VK_UP:
                 if (!this.listbox.hidden) {
                     this.listbox.previousActiveListItem();
-                    this.setActiveDescendant(this.listbox.activeItem);
+                    // this.setActiveDescendant(this.listbox.activeItem);
                 }
                 break;
             case VK_ENTER:
@@ -171,11 +171,10 @@
             if (foundItems === 0) {
                 this.hide();
             } else {
-                var pos = 1;
+                var pos = 0;
                 for (var visibleItem of this.visibleItems) {
-                  visibleItem.setAttribute('aria-posinset', pos);
+                  visibleItem.setAttribute('aria-posinset', pos++);
                   visibleItem.setAttribute('aria-setsize', this.visibleItems.length);
-                  pos++;
                 }
 
             }
@@ -240,11 +239,10 @@
         changeActiveListitem: function(newIdx) {
             var active = this.activeItem;
             var newActive = this.visibleItems[newIdx];
-            console.log(newActive);
             if (active)
                 active.classList.remove('active');
             newActive.classList.add('active');
-
+            this.textbox.setActiveDescendant(newActive);
             // FIXME: need to ensure focus stays on textbox, but report active list option
         }
     };
