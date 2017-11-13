@@ -77,11 +77,13 @@
             case VK_DOWN:
                 if (!this.listbox.hidden) {
                     this.listbox.nextActiveListItem();
+                    this.setActiveDescendant(this.listbox.activeItem);
                 }
                 break;
             case VK_UP:
                 if (!this.listbox.hidden) {
                     this.listbox.previousActiveListItem();
+                    this.setActiveDescendant(this.listbox.activeItem);
                 }
                 break;
             case VK_ENTER:
@@ -169,7 +171,13 @@
             if (foundItems === 0) {
                 this.hide();
             } else {
-                // FIXME: ChromeVox reports the wrong list size and position
+                var pos = 1;
+                for (var visibleItem of this.visibleItems) {
+                  visibleItem.setAttribute('aria-posinset', pos);
+                  visibleItem.setAttribute('aria-setsize', this.visibleItems.length);
+                  pos++;
+                }
+
             }
         },
 
@@ -232,6 +240,7 @@
         changeActiveListitem: function(newIdx) {
             var active = this.activeItem;
             var newActive = this.visibleItems[newIdx];
+            console.log(newActive);
             if (active)
                 active.classList.remove('active');
             newActive.classList.add('active');
@@ -244,4 +253,4 @@
     var listbox = document.querySelector('[role=listbox]');
 
     new ComboBox(input, listbox);
-})()
+})();
