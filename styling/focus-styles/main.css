@@ -12,21 +12,23 @@ a:focus {
 }
 
 .nav > li > a {
-  padding: 0 16px;
-  margin: 0 8px;
+  padding: 0px 16px;
 }
 
-.nav > li > a:focus {
-  text-decoration: none;
-  background: transparent;
+.nav > li > a:focus,
+.nav > li > a:hover {
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
 }
 
-.jumbotron .mdl-button {
+.jumbotron .mdl-button:focus, .mdl-button:hover {
   background-color: #008b00;
   color: #FFFFFF;
 }
 
-.mdl-button.raised {
+.mdl-button.raised:hover,
+.mdl-button.raised:focus {
+  background-color: transparent;
+  color: black;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
               0 3px 1px -2px rgba(0, 0, 0, .2),
               0 1px 5px 0 rgba(0, 0, 0, .12);
